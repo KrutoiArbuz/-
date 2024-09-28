@@ -1,8 +1,6 @@
 import csv
 from xaxaton import *
 
-def fck(string):
-    return string
 def reading_format(queue,url,num_db):
     k=1
     with open(url,encoding='utf-8') as db:

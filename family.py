@@ -3,8 +3,7 @@ import uuid
 import random
 from comparison import compar
 
-def fck(string1,string2):
-    return string1>=string2
+
 
 def find_family(string,family,num_db,final_db):
 
