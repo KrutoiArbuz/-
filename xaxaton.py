@@ -1,7 +1,7 @@
 from transliterate import get_translit_function
 from itertools import permutations
 
-DICT_DIGIT_CHANGE_SYMBOL = {'0': 'о', '3': 'з', 'ё': 'е'}  # да я знаю, что я ебыч писать сюда ё, но да похуй
+DICT_DIGIT_CHANGE_SYMBOL = {'0': 'о', '3': 'з', 'ё': 'е'}
 DICT_SYMBOL_CHANGE_DIGIT = {'о': '0', 'з': '3'}
 LIST_NATIONAL_FATHER = ('ОГЛЫ', 'КЫЗЫ', 'УГЛИ', 'ОГЛУ', 'УУЛУ', 'ЗАДЕ', 'ХАН', 'БАБА')
 LIST_CANCEL = ('ОТСУТСТВУЕТ', 'НЕТ')

@@ -6,7 +6,6 @@ def reading_format(queue,url,num_db):
     with open(url,encoding='utf-8') as db:
         db_reader = csv.reader(db,delimiter=',')
 
-
         for string in db_reader:
             if k == 1:
                 k=0
@@ -29,7 +28,7 @@ def reading_format(queue,url,num_db):
                     birthdate= normal_date(string[4])
                     phone= normal_mobile_phone(string[5])
                     address= normal_address(string[6])
-                    return_string ={"uid":uid,"full_name":name,"birthdate":birthdate,"phone":phone,"address":address,email:""}
+                    return_string ={"uid":uid,"full_name":name,"birthdate":birthdate,"phone":phone,"address":address}
                 case 2:
                     uid = string[0]
                     name = normal_fio(string[1])
@@ -37,10 +36,6 @@ def reading_format(queue,url,num_db):
                     birthdate= normal_date(string[5])
                     sex= string[6]
                     return_string ={"uid":uid,"full_name":name,"email":email,"birthdate":birthdate,"sex":sex}
-
-
-
-
 
             queue.put([return_string,num_db])
 

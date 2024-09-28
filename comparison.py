@@ -16,7 +16,7 @@ def compar(csv_row,json_row,base):
         flag += 1
     if combined_similarity(csv_row['birthdate'], json_row['birthdate'], weights) > 0.75:
         flag += 1
-    if base ==1:
+    if base ==0:
         if combined_similarity(csv_row['address'],json_row['address'])>0.75:
             flag+=1
         if combined_similarity(csv_row['phone'], json_row['phone'],weights) > 0.75:
@@ -24,7 +24,7 @@ def compar(csv_row,json_row,base):
         if csv_row['sex']==json_row['sex']:
             flag+=1
         return 1 if flag>=4 else 0
-    elif base ==2:
+    elif base ==1:
         if combined_similarity(csv_row['address'], json_row['address']) > 0.75:
             flag += 1
         if combined_similarity(csv_row['phone'], json_row['phone'], weights) > 0.75:

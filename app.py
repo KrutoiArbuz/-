@@ -1,5 +1,5 @@
 from parsing import reading_format
-
+import time
 from multiprocessing import Manager, Pool, Process
 from family import find_family
 family={}
@@ -13,9 +13,11 @@ def output_from_queue(queue):
             break
 
         find_family(line[0],family,line[1],db)
-        print(db)
+
 
 if __name__ == '__main__':
+    start_time = time.time()
+
 
     manager = Manager()
     queue = manager.Queue()
@@ -30,6 +32,7 @@ if __name__ == '__main__':
     # Завершаем процесс вывода
     queue.put(None)  # Отправляем сигнал о завершении
     output_process.join()  # Ожидаем завершения процесса
-
+    print("--- %s minutes ---" % ((time.time() - start_time)/60))
+    print(db)
 
 
