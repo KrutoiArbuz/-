@@ -13,6 +13,7 @@ def output_from_queue(queue):
             break
 
         find_family(line[0],family,line[1],db)
+        print(db)
 
 if __name__ == '__main__':
 

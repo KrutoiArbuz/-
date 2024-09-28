@@ -9,10 +9,11 @@ def fck(string1,string2):
 def find_family(string,family,num_db,final_db):
 
     for i in list(family.keys()):
-        if compar(string,family[i]["string"])==True:
+        if compar(string,family[i]["string"],num_db)==True:
             family[i]["string"]=string
 
-            family[i]["string"]["ids"].append(string['uid'])
+            family[i]['ids'].append(string['uid'])
+
             if ( family[i]["id"] in final_db.keys()):
 
                 final_db[family[i]["id"]][num_db].append(string['uid'])
@@ -32,8 +33,8 @@ def find_family(string,family,num_db,final_db):
         if not str(k) in family.keys():
             break
 
-
-    family[str(k)]={"string":string,"id":str(uuid.uuid4()),"ids":[string['uid']]}
+    i=str(k)
+    family[i]={"string":string,"id":str(uuid.uuid4()),"ids":[string['uid']]}
 
 
 

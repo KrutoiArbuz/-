@@ -4,10 +4,16 @@ from xaxaton import *
 def fck(string):
     return string
 def reading_format(queue,url,num_db):
-
+    k=1
     with open(url,encoding='utf-8') as db:
         db_reader = csv.reader(db,delimiter=',')
+
+
         for string in db_reader:
+            if k == 1:
+                k=0
+                continue
+
             match num_db:
                 case 0:
                     uid=string[0]
@@ -25,14 +31,14 @@ def reading_format(queue,url,num_db):
                     birthdate= normal_date(string[4])
                     phone= normal_mobile_phone(string[5])
                     address= normal_address(string[6])
-                    return_string ={"uid":uid,"name":name,"birthdate":birthdate,"phone":phone,"address":address}
+                    return_string ={"uid":uid,"full_name":name,"birthdate":birthdate,"phone":phone,"address":address,email:""}
                 case 2:
                     uid = string[0]
                     name = normal_fio(string[1])
                     email= normal_email(string[2])
                     birthdate= normal_date(string[5])
                     sex= string[6]
-                    return_string ={"uid":uid,"name":name,"email":email,"birthdate":birthdate,"sex":sex}
+                    return_string ={"uid":uid,"full_name":name,"email":email,"birthdate":birthdate,"sex":sex}
 
 
 
