@@ -9,7 +9,8 @@ def find_family(string,family,num_db,final_db):
 
     for i in list(family.keys()):
         if compar(string,family[i]["string"],num_db)==True:
-            family[i]["string"]=string
+            if (len(string)>len(family[i]["string"])):
+                family[i]["string"]=string
 
             family[i]['ids'].append(string['uid'])
 

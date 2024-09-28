@@ -9,30 +9,37 @@ soundex = RussianSoundex(delete_first_letter=True)
 
 def compar(csv_row,json_row,base):
     flag = 0
+
     weights = {'jaro_winkler': 0.5, 'levenshtein': 0.5, 'soundex': 0.0}
-    if combined_similarity(sort_words(csv_row['full_name']), sort_words(json_row['full_name'])) > 0.75:
+    csv_keys=list(csv_row.keys())
+    json_keys=list(json_row.keys())
+
+    if ('full_name' in csv_keys and 'full_name' in json_keys) and combined_similarity(sort_words(csv_row['full_name']), sort_words(json_row['full_name'])) > 0.75:
         flag += 1
-    if combined_similarity(csv_row['email'], json_row['email']) > 0.75:
-        flag += 1
-    if combined_similarity(csv_row['birthdate'], json_row['birthdate'], weights) > 0.75:
+
+    if ('birthdate' in csv_keys and 'birthdate' in json_keys) and combined_similarity(csv_row['birthdate'], json_row['birthdate'], weights) > 0.75:
         flag += 1
     if base ==0:
-        if combined_similarity(csv_row['address'],json_row['address'])>0.75:
+        if ('address' in csv_keys and 'address' in json_keys) and combined_similarity(csv_row['address'],json_row['address'])>0.75:
             flag+=1
-        if combined_similarity(csv_row['phone'], json_row['phone'],weights) > 0.75:
+        if ('phone' in csv_keys and 'phone' in json_keys) and combined_similarity(csv_row['phone'], json_row['phone'],weights) > 0.75:
             flag += 1
-        if csv_row['sex']==json_row['sex']:
+        if ('sex' in csv_keys and 'sex' in json_keys) and  csv_row['sex']==json_row['sex']:
             flag+=1
+        if ('email' in csv_keys and 'email' in json_keys) and combined_similarity(csv_row['email'], json_row['email']) > 0.75:
+            flag += 1
         return 1 if flag>=4 else 0
     elif base ==1:
-        if combined_similarity(csv_row['address'], json_row['address']) > 0.75:
+        if ('address' in csv_keys and 'address' in json_keys) and combined_similarity(csv_row['address'], json_row['address']) > 0.75:
             flag += 1
-        if combined_similarity(csv_row['phone'], json_row['phone'], weights) > 0.75:
+        if ('phone' in csv_keys and 'phone' in json_keys) and combined_similarity(csv_row['phone'], json_row['phone'], weights) > 0.75:
             flag += 1
         return 1 if flag >= 4 else 0
     else:
-        if csv_row['sex']==json_row['sex']:
+        if ('sex' in csv_keys and 'sex' in json_keys) and csv_row['sex']==json_row['sex']:
             flag+=1
+        if ('email' in csv_keys and 'email' in json_keys) and combined_similarity(csv_row['email'], json_row['email']) > 0.75:
+            flag += 1
         return 1 if flag >= 3 else 0
 
 def sort_words(string):

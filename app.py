@@ -15,6 +15,7 @@ def output_from_queue(queue):
         find_family(line[0],family,line[1],db)
 
 
+
 if __name__ == '__main__':
     start_time = time.time()
 
