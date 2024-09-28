@@ -1,16 +1,16 @@
 import csv
 from xaxaton import *
-
+# функция чтения бд
 def reading_format(queue,url,num_db):
     k=1
     with open(url,encoding='utf-8') as db:
         db_reader = csv.reader(db,delimiter=',')
-
+        # пропускаем первую строку в каждой бд
         for string in db_reader:
             if k == 1:
                 k=0
                 continue
-
+            # в зависимости от бд наполняем return_string
             match num_db:
                 case 0:
                     uid=string[0]
@@ -36,7 +36,7 @@ def reading_format(queue,url,num_db):
                     birthdate= normal_date(string[3])
                     sex= string[4]
                     return_string ={"uid":uid,"full_name":full_name,"email":email,"birthdate":birthdate,"sex":sex}
-
+            # отпрвляем в очередь данные
             queue.put([return_string,num_db])
 
 

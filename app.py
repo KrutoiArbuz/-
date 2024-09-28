@@ -5,7 +5,7 @@ from family import find_family
 family={}
 db={}
 
-
+# функция перебора очереди и отправка family
 def output_from_queue(queue):
     while True:
         line = queue.get()
