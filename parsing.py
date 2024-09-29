@@ -39,7 +39,7 @@ def reading_format(url,num_db):
                 case 1:
                     uid = string[0]
 
-                    full_name = normal_fio(string[1]+string[2]+ string[3])
+                    full_name = normal_fio(string[1]+" "+string[2]+" "+string[3])
                     birthdate= normal_date(string[4])
                     phone= normal_mobile_phone(string[5])
                     address= normal_address(string[6])
@@ -54,7 +54,7 @@ def reading_format(url,num_db):
 
             find_family(return_string,family,num_db)
             count+=1
-            if count==500:
+            if count==100:
                 with open(f"data/family_data{num_db}.json", mode='w', encoding="utf-8") as file:
                     json.dump(family, file, ensure_ascii=False)
                 count=0

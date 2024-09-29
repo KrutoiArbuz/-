@@ -14,12 +14,12 @@ def merge_json_files(directory_path):
                 print(len(data))
                 final_family.update(data)
     return final_family
-
-
-def final_compare(final_family):
-    keys=list(final_family.keys())
-    for i in range(len(keys)):
-        for j in range(i+1,len(keys)+1):
+#
+#
+# def final_compare(final_family):
+#     keys=list(final_family.keys())
+#     for i in range(len(keys)):
+#         for j in range(i+1,len(keys)+1):
 
 final_family=(merge_json_files("data/"))
 print(len(final_family))
