@@ -1,5 +1,5 @@
 from transliterate import get_translit_function
-from itertools import permutations
+
 
 DICT_DIGIT_CHANGE_SYMBOL = {'0': 'о', '3': 'з', 'ё': 'е'}
 DICT_SYMBOL_CHANGE_DIGIT = {'о': '0', 'з': '3'}

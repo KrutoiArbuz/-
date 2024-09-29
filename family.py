@@ -1,7 +1,4 @@
-import json
 import uuid
-import random
-import string
 import hashlib
 from comparison import compar
 

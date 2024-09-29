@@ -1,8 +1,7 @@
 
-import pandas as pd
+
 import numpy as np
 from fonetika.soundex import RussianSoundex
-import json
 from fonetika.distance import PhoneticsInnerLanguageDistance
 soundex = RussianSoundex(delete_first_letter=True)
 
@@ -71,9 +70,7 @@ def combined_similarity(string1, string2, weights=None):
                 else:
                     cost = 1
 
-                distance[row][col] = min(distance[row - 1][col] + 1,
-                                         distance[row][col - 1] + 1,
-                                         distance[row - 1][col - 1] + cost)
+                distance[row][col] = min(distance[row - 1][col] + 1,distance[row][col - 1] + 1,distance[row - 1][col - 1] + cost)
 
         distance = distance[row][col]
 

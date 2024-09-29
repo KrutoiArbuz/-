@@ -12,7 +12,7 @@ def write_to_json(family, filename='family_data.json'):
 # Функция для чтения данных из JSON файла и создания словаря family
 
 
-def reading_format(url,num_db):
+def reading_format(url,num_db,que):
     k=1
     family = {}
     count=0
@@ -57,7 +57,9 @@ def reading_format(url,num_db):
             if count==100:
                 with open(f"data/family_data{num_db}.json", mode='w', encoding="utf-8") as file:
                     json.dump(family, file, ensure_ascii=False)
+                que.put(num_db)
                 count=0
+    que.put(None)
 
-    file.close()
+
 
