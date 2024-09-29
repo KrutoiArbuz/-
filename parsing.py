@@ -1,12 +1,27 @@
 import csv
+from family import find_family
 from xaxaton import *
-# функция чтения бд
-def reading_format(queue,url,num_db):
+import json
+
+
+def write_to_json(family, filename='family_data.json'):
+
+    with open(filename, mode='w', encoding="utf-8") as file:
+        json.dump(family, file, ensure_ascii=False, indent=4)
+
+# Функция для чтения данных из JSON файла и создания словаря family
+
+
+def reading_format(url,num_db):
     k=1
+    family = {}
+    count=0
     with open(url,encoding='utf-8') as db:
         db_reader = csv.reader(db,delimiter=',')
+
         # пропускаем первую строку в каждой бд
         for string in db_reader:
+
             if k == 1:
                 k=0
                 continue
@@ -36,8 +51,13 @@ def reading_format(queue,url,num_db):
                     birthdate= normal_date(string[3])
                     sex= string[4]
                     return_string ={"uid":uid,"full_name":full_name,"email":email,"birthdate":birthdate,"sex":sex}
-            # отпрвляем в очередь данные
-            queue.put([return_string,num_db])
 
+            find_family(return_string,family,num_db)
+            count+=1
+            if count==500:
+                with open(f"data/family_data{num_db}.json", mode='w', encoding="utf-8") as file:
+                    json.dump(family, file, ensure_ascii=False)
+                count=0
 
+    file.close()
 

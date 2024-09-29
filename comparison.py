@@ -34,13 +34,14 @@ def compar(csv_row,json_row,base):
             flag += 1
         if ('phone' in csv_keys and 'phone' in json_keys) and combined_similarity(csv_row['phone'], json_row['phone'], weights) > 0.75:
             flag += 1
-        return 1 if flag >= 4 else 0
+        return 1 if flag >= 3 else 0
     else:
         if ('sex' in csv_keys and 'sex' in json_keys) and csv_row['sex']==json_row['sex']:
             flag+=1
         if ('email' in csv_keys and 'email' in json_keys) and combined_similarity(csv_row['email'], json_row['email']) > 0.75:
             flag += 1
         return 1 if flag >= 3 else 0
+
 
 def sort_words(string):
     words = string.split()
